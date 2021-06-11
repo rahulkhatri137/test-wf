@@ -18,18 +18,5 @@ jobs:
        
        - name: Setup
          run: |
-              mkdir -p file
               echo "Downloading your file. wait... it can take some seconds/minutes"
-              aria2c -o "file/$FILE_NAME.img" $FILE_URL
-
-       - name: Compress File
-         run: |
-              cd file
-              ls
-              echo "Compressing your file. wait... it can take some minutes"
-              xz -cfev9T20 $FILE_NAME.img
-              ls
-              xz -cfev9T20 $FILE_NAME.img > testxz.xz
-              ls
-              xz -fev9T20 $FILE_NAME.img
-              ls
+              aria2c -h
