@@ -2,6 +2,12 @@ name: test
 
 on: [push]
 
+env:
+  FILE_URL: https://mirror.rahul137.workers.dev/blueline-spb2.210513.007-factory-6c2e7c7f/blueline-spb2.210513.007/bootloader-blueline-b1c1-0.4-7266295.img
+  FILE_NAME: test
+  F_NAME: test.img
+  TZ: Asia/Kolkata
+
 jobs:
   test:
     runs-on: ubuntu-18.04
@@ -12,6 +18,18 @@ jobs:
        
        - name: Setup
          run: |
-           gzip -h
-           xz -h
-           tar --help
+              mkdir -p file
+              echo "Downloading your file. wait... it can take some seconds/minutes"
+              aria2c -o "file/$FILE_NAME.img" $FILE_URL
+
+       - name: Compress File
+         run: |
+              cd file
+              ls
+              echo "Compressing your file. wait... it can take some minutes"
+              xz -cfev9T20 $FILE_NAME.img
+              ls
+              xz -cfev9T20 $FILE_NAME.img > testxz.xz
+              ls
+              xz -fev9T20 $FILE_NAME.img
+              ls
