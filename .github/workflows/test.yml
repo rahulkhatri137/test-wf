@@ -1,0 +1,17 @@
+name: test
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-18.04
+
+    steps:
+       - name: Checkout
+         uses: actions/checkout@master
+       
+       - name: Setup
+         run: |
+           gzip -h
+           xz -h
+           tar --help
