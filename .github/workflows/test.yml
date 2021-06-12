@@ -3,7 +3,7 @@ name: test
 on: [push]
 
 env:
-  FILE_URL: https://mirror.rahul137.workers.dev/ImsService.apk
+  FILE_URL: https://mirror.rahul137.workers.dev/Alpha.zip
   FILE_NAME:
   TZ: Asia/Kolkata
 
