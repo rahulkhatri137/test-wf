@@ -27,7 +27,7 @@ jobs:
               fi
 
        - name: Decompress
-        continue-on-error: true
+         continue-on-error: true
          run: |
               cd file
               if [ -f *.zip ]; then
@@ -36,7 +36,7 @@ jobs:
               fi
 
        - name: Decompress 2
-        continue-on-error: true
+         continue-on-error: true
          run: |
               cd file
               if [ ls *.zip ]; then
@@ -45,7 +45,7 @@ jobs:
               fi
 
        - name: Decompress 3
-        continue-on-error: true
+         continue-on-error: true
          run: |
               cd file
               if [ "ls *.zip" ]; then
