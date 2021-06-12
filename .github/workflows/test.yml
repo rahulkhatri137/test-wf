@@ -31,5 +31,5 @@ jobs:
               cd file
               if [ -z "FILE=.zip"; then
               echo "Enter url of file to download";
-              else echo "Downloading your file. wait... it can take some seconds"
+              else echo "Downloading your file. wait... it can take some seconds";
               fi
