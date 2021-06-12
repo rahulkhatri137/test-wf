@@ -3,7 +3,7 @@ name: test
 on: [push]
 
 env:
-  FILE_URL: https://mirror.rahul137.workers.dev/alpha.zip
+  FILE_URL: https://mirror.rahul137.workers.dev/ImsService.apk
   FILE_NAME:
   TZ: Asia/Kolkata
 
@@ -36,15 +36,6 @@ jobs:
               fi
 
        - name: Decompress 2
-         continue-on-error: true
-         run: |
-              cd file
-              if [ ls *.zip ]; then
-              echo "Enter url of file to download";
-              else echo "Downloading your file. wait... it can take some seconds";
-              fi
-
-       - name: Decompress 3
          continue-on-error: true
          run: |
               cd file
