@@ -18,6 +18,13 @@ jobs:
        - name: Download
          run: |
               mkdir -p file
+              cd file
+              if [ -z "$FILE_URL" ]; then
+              echo "Enter url of file to download"
+              exit 1;
+              else echo "Downloading your file. wait... it can take some seconds/minutes"
+              aria2c  $FILE_URL;
+              fi
 
        - name: Decompress
          run: |
