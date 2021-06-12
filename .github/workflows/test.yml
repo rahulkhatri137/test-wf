@@ -3,9 +3,8 @@ name: test
 on: [push]
 
 env:
-  FILE_URL: https://mirror.rahul137.workers.dev/blueline-spb2.210513.007-factory-6c2e7c7f/blueline-spb2.210513.007/bootloader-blueline-b1c1-0.4-7266295.img
+  FILE_URL: https://mirror.rahul137.workers.dev/ImsService.apk
   FILE_NAME:
-  F_NAME: test.img
   TZ: Asia/Kolkata
 
 jobs:
@@ -16,7 +15,21 @@ jobs:
        - name: Checkout
          uses: actions/checkout@master
        
-       - name: Setup
+       - name: Download
          run: |
-              if [ -z "$FILE_NAME" ]; then echo "NULL"; else echo "Not NULL"; fi
-              [ -z "$F_NAME" ] echo "NULL" || echo "Not NULL"
+              mkdir -p file
+              cd file
+              if [ -z "$FILE_URL" ]; then
+              echo "Enter url of file to download"
+              exit 1;
+              else echo "Downloading your file. wait... it can take some seconds/minutes"
+              aria2c  $FILE_URL;
+              fi
+
+       - name: Decompress
+         run: |
+              cd file
+              if FILE=*.zip; then
+              echo "Enter url of file to download";
+              else echo "Downloading your file. wait... it can take some seconds"
+              fi
