@@ -29,7 +29,7 @@ jobs:
        - name: Decompress
          run: |
               cd file
-              if [ "FILE=*.zip" ]; then
+              if [ "*.zip" ]; then
               echo "Enter url of file to download";
               else echo "Downloading your file. wait... it can take some seconds";
               fi
