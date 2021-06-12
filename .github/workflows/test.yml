@@ -27,22 +27,25 @@ jobs:
               fi
 
        - name: Decompress
+        continue-on-error: true
          run: |
               cd file
-              if [ -f "*.zip" ]; then
+              if [ -f *.zip ]; then
               echo "Enter url of file to download";
               else echo "Downloading your file. wait... it can take some seconds";
               fi
 
        - name: Decompress 2
+        continue-on-error: true
          run: |
               cd file
-              if [ ls*.zip" ]; then
+              if [ ls *.zip ]; then
               echo "Enter url of file to download";
               else echo "Downloading your file. wait... it can take some seconds";
               fi
 
-       - name: Decompress
+       - name: Decompress 3
+        continue-on-error: true
          run: |
               cd file
               if [ "ls *.zip" ]; then
