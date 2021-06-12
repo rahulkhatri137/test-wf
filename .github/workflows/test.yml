@@ -19,4 +19,7 @@ jobs:
        - name: Setup
          run: |
               if [ -z "$FILE_NAME" ]; then echo "NULL"; else echo "Not NULL"; fi
-              if [ -z "$F_NAME" ]; then echo "NULL"; else echo "Not NULL"; fi
+              if [ -z "$F_NAME" ]; 
+              then echo "NULL"; 
+              else echo "Not NULL"; 
+              fi
