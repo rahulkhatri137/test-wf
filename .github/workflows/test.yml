@@ -4,7 +4,7 @@ on: [push]
 
 env:
   FILE_URL: https://mirror.rahul137.workers.dev/blueline-spb2.210513.007-factory-6c2e7c7f/blueline-spb2.210513.007/bootloader-blueline-b1c1-0.4-7266295.img
-  FILE_NAME: test
+  FILE_NAME:
   F_NAME: test.img
   TZ: Asia/Kolkata
 
@@ -18,5 +18,7 @@ jobs:
        
        - name: Setup
          run: |
-              echo "Downloading your file. wait... it can take some seconds/minutes"
-              aria2c -h
+              if [ -z "$FILE_NAME" ];
+              echo "Yes" else;
+              echo "no"
+              fi
