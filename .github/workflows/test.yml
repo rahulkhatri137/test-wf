@@ -2,11 +2,6 @@ name: test
 
 on: [push]
 
-env:
-  FILE_URL: https://mirror.rahul137.workers.dev/ImsService.apk
-  FILE_NAME:
-  TZ: Asia/Kolkata
-
 jobs:
   test:
     runs-on: ubuntu-18.04
@@ -17,29 +12,16 @@ jobs:
        
        - name: Download
          run: |
-              mkdir -p file
-              cd file
-              if [ -z "$FILE_URL" ]; then
-              echo "Enter url of file to download"
-              exit 1;
-              else echo "Downloading your file. wait... it can take some seconds/minutes"
-              aria2c  $FILE_URL;
-              fi
+              mkdir -p fluid
+              cd fluid
+              repo init -u https://github.com/Project-Fluid/manifest.git -b fluid-11
+              repo sync --force-sync --no-tags --no-clone-bundle -j$(nproc --all)
+              ls
 
-       - name: Decompress
+       - name: build
          continue-on-error: true
          run: |
-              cd file
-              if [ -f *.zip ]; then
-              echo "Enter url of file to download";
-              else echo "Downloading your file. wait... it can take some seconds";
-              fi
-
-       - name: Decompress 2
-         continue-on-error: true
-         run: |
-              cd file
-              if [ "ls *.zip" ]; then
-              echo "Enter url of file to download";
-              else echo "Downloading your file. wait... it can take some seconds";
-              fi
+              cd fluid
+              . build/envsetup.sh
+              lunch fluid_device-userdebug
+              mka bacon
