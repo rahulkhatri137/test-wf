@@ -14,6 +14,7 @@ jobs:
          run: |
               mkdir -p fluid
               cd fluid
+              $PATH=~/bin:$PATH
               repo init -u https://github.com/Project-Fluid/manifest.git -b fluid-11
               repo sync --force-sync --no-tags --no-clone-bundle -j$(nproc --all)
               ls
