@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     steps:
        - name: Checkout
@@ -44,7 +44,7 @@ jobs:
               ls
               cd builds
               ls
-       - name: XZip AB and upload 
+       - name: Upload 
          run: |
               cd pixel
               ls
