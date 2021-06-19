@@ -4,13 +4,14 @@ on: [push]
 
 jobs:
   test:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     steps:
        - name: Checkout
          uses: actions/checkout@master
        
        - name: Setup
+         continue-on-error: true
          run: |
               mkdir -p ~/.repo
               PATH="${HOME}/.repo:${PATH}"
@@ -22,6 +23,7 @@ jobs:
               ls
      
        - name: Download
+         continue-on-error: true
          run: |
               ls
               cd repo
@@ -43,9 +45,8 @@ jobs:
               ls
        - name: XZip AB and upload 
          run: |
-              cd pixel
+              cd repo
               ls
-              cd builds
               ls
               expect -c " 
               spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
@@ -56,7 +57,7 @@ jobs:
               expect \"sftp> \"
               send \"cd ${{ secrets.SFDIR }}\r\"
               set timeout -1
-              send \"put *.xz\r\"
+              send \"put main.py\r\"
               expect \"Uploading\"
               expect \"100%\"
               expect \"sftp>\"
