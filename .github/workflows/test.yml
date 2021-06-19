@@ -12,12 +12,14 @@ jobs:
        
        - name: Setup
          run: |
-              git clone https://gerrit.googlesource.com/git-repo
-       
+              mkdir -p ~/.bin
+              PATH="${HOME}/.bin:${PATH}"
+              curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
+              chmod a+rx ~/.bin/repo  
+     
        - name: Download
          run: |
               ls
-              cd git-repo
               git clone https://github.com/ponces/treble_experimentations
               mkdir pixel; cd pixel
               ls
