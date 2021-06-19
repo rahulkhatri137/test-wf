@@ -9,6 +9,13 @@ jobs:
     steps:
        - name: Checkout
          uses: actions/checkout@master
+
+      - name: Set Git Configs & Secrets
+        run: |
+          git config --global user.email ${{ secrets.GHMAIL }}
+          git config --global user.name ${{ secrets.GHUSER }}
+          git config --global credential.helper store
+          echo "https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
        
        - name: Setup
          continue-on-error: true
@@ -26,7 +33,7 @@ jobs:
               git clone https://github.com/ponces/treble_experimentations
               mkdir pixel; cd pixel
               ls
-              python3 ~/.repo/repo init -u https://github.com/Project-Fluid/manifest.git -b fluid-11
+              python3 ~/.repo/repo init -u https://github.com/PixelExperience/manifest -b eleven
               git clone https://github.com/ponces/treble_patches -b eleven
               git clone https://github.com/rahulkhatri137/treble_build_pe -b eleven
 
