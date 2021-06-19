@@ -10,19 +10,44 @@ jobs:
        - name: Checkout
          uses: actions/checkout@master
        
+       - name: Setup
+         run: |
+              sudo apt-get install repo
+       
        - name: Download
          run: |
-              mkdir -p fluid
-              cd fluid
-              $PATH=~/bin:$PATH
-              repo init -u https://github.com/Project-Fluid/manifest.git -b fluid-11
-              repo sync --force-sync --no-tags --no-clone-bundle -j$(nproc --all)
-              ls
+              git clone https://github.com/ponces/treble_experimentations
+              mkdir pixel; cd pixel
+              repo init -u https://github.com/PixelExperience/manifest -b eleven
+              git clone https://github.com/ponces/treble_patches -b eleven
+              git clone https://github.com/rahulkhatri137/treble_build_pe -b eleven
 
-       - name: build
+       - name: Build
          continue-on-error: true
          run: |
-              cd fluid
-              . build/envsetup.sh
-              lunch fluid_device-userdebug
-              mka bacon
+              cd pixel
+              bash treble_build_pe/buildbot_treble.sh
+              ls
+              cd builds
+              ls
+       - name: XZip AB and upload 
+         run: |
+              cd pixel
+              ls
+              cd builds
+              ls
+              expect -c " 
+              spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
+              expect \"yes/no\"
+              send \"yes\r\"
+              expect \"Password\"        
+              send \"${{ secrets.SFPASS }}\r\"
+              expect \"sftp> \"
+              send \"cd ${{ secrets.SFDIR }}\r\"
+              set timeout -1
+              send \"put *.xz\r\"
+              expect \"Uploading\"
+              expect \"100%\"
+              expect \"sftp>\"
+              send \"bye\r\"
+              interact"
