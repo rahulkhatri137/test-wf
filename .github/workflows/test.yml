@@ -18,18 +18,16 @@ jobs:
               curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.repo/repo
               chmod a+rx ~/.repo/repo  
               sudo apt install expect -y
-              git clone https://android.googlesource.com/tools/repo
               ls
      
        - name: Download
          continue-on-error: true
          run: |
               ls
-              ls
               git clone https://github.com/ponces/treble_experimentations
               mkdir pixel; cd pixel
               ls
-              repo init -u https://github.com/Project-Fluid/manifest.git -b fluid-11
+              python3 ~/.repo/repo init -u https://github.com/Project-Fluid/manifest.git -b fluid-11
               git clone https://github.com/ponces/treble_patches -b eleven
               git clone https://github.com/rahulkhatri137/treble_build_pe -b eleven
 
@@ -43,7 +41,9 @@ jobs:
               ls
        - name: XZip AB and upload 
          run: |
-              cd repo
+              cd pixel
+              ls
+              cd builds
               ls
               expect -c " 
               spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
