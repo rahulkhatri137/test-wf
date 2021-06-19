@@ -10,6 +10,10 @@ jobs:
        - name: Checkout
          uses: actions/checkout@master
        
+       - name: Setup
+         run: |
+              sudo apt-get install repo
+       
        - name: Download
          run: |
               git clone https://github.com/ponces/treble_experimentations
