@@ -18,7 +18,6 @@ jobs:
               curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.repo/repo
               chmod a+rx ~/.repo/repo  
               ls
-              sudo apt-get install repo
               git clone https://android.googlesource.com/tools/repo
               ls
      
