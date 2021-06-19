@@ -10,12 +10,12 @@ jobs:
        - name: Checkout
          uses: actions/checkout@master
 
-      - name: Set Git Configs & Secrets
-        run: |
-          git config --global user.email ${{ secrets.GHMAIL }}
-          git config --global user.name ${{ secrets.GHUSER }}
-          git config --global credential.helper store
-          echo "https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
+       - name: Set Git Configs & Secrets
+         run: |
+              git config --global user.email ${{ secrets.GHMAIL }}
+              git config --global user.name ${{ secrets.GHUSER }}
+              git config --global credential.helper store
+              echo "https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
        
        - name: Setup
          continue-on-error: true
