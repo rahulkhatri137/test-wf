@@ -12,10 +12,10 @@ jobs:
        
        - name: Setup
          run: |
-              mkdir -p ~/.bin
-              PATH="${HOME}/.bin:${PATH}"
-              curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
-              chmod a+rx ~/.bin/repo  
+              mkdir -p ~/.repo
+              PATH="${HOME}/.repo:${PATH}"
+              curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.repo/repo
+              chmod a+rx ~/.repo/repo  
      
        - name: Download
          run: |
