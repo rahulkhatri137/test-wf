@@ -46,7 +46,7 @@ jobs:
          run: |
               cd repo
               ls
-              ls
+              sudo apt-get install expect
               expect -c " 
               spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
               expect \"yes/no\"
