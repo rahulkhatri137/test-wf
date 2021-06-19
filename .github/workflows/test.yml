@@ -38,6 +38,7 @@ jobs:
               git clone https://github.com/rahulkhatri137/treble_build_pe -b eleven
 
        - name: Build
+         continue-on-error:
          run: |
               cd pixel
               bash treble_build_pe/buildbot_treble.sh
