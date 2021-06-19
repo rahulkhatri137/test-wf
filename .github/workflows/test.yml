@@ -12,10 +12,12 @@ jobs:
        
        - name: Setup
          run: |
-              sudo apt-get install repo
+              git clone https://gerrit.googlesource.com/git-repo
        
        - name: Download
          run: |
+              ls
+              cd git-repo
               git clone https://github.com/ponces/treble_experimentations
               mkdir pixel; cd pixel
               ls
