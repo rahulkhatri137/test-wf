@@ -17,7 +17,7 @@ jobs:
               PATH="${HOME}/.repo:${PATH}"
               curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.repo/repo
               chmod a+rx ~/.repo/repo  
-              ls
+              sudo apt install repo expect -y
               git clone https://android.googlesource.com/tools/repo
               ls
      
@@ -46,7 +46,6 @@ jobs:
          run: |
               cd repo
               ls
-              sudo apt-get install expect
               expect -c " 
               spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
               expect \"yes/no\"
