@@ -42,8 +42,7 @@ jobs:
               cd pixel
               bash treble_build_pe/buildbot_treble.sh
               ls
-              cd builds
-              ls
+
        - name: Upload 
          run: |
               cd pixel
