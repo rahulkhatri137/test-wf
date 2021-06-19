@@ -18,6 +18,8 @@ jobs:
               chmod a+rx ~/.repo/repo  
               ls
               sudo apt-get install repo
+              git clone https://android.googlesource.com/tools/repo
+              ls
      
        - name: Download
          run: |
