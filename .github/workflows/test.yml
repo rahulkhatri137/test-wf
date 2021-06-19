@@ -18,7 +18,8 @@ jobs:
          run: |
               git clone https://github.com/ponces/treble_experimentations
               mkdir pixel; cd pixel
-              repo init -u https://github.com/PixelExperience/manifest -b eleven
+              ls
+              repo init -u https://github.com/Project-Fluid/manifest.git -b fluid-11
               git clone https://github.com/ponces/treble_patches -b eleven
               git clone https://github.com/rahulkhatri137/treble_build_pe -b eleven
 
