@@ -17,7 +17,7 @@ jobs:
               PATH="${HOME}/.repo:${PATH}"
               curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.repo/repo
               chmod a+rx ~/.repo/repo  
-              sudo apt install repo expect -y
+              sudo apt install expect -y
               git clone https://android.googlesource.com/tools/repo
               ls
      
@@ -25,7 +25,6 @@ jobs:
          continue-on-error: true
          run: |
               ls
-              cd repo
               ls
               git clone https://github.com/ponces/treble_experimentations
               mkdir pixel; cd pixel
@@ -55,7 +54,7 @@ jobs:
               expect \"sftp> \"
               send \"cd ${{ secrets.SFDIR }}\r\"
               set timeout -1
-              send \"put main.py\r\"
+              send \"put *.xz\r\"
               expect \"Uploading\"
               expect \"100%\"
               expect \"sftp>\"
