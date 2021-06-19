@@ -21,7 +21,6 @@ jobs:
               ls
      
        - name: Download
-         continue-on-error: true
          run: |
               ls
               git clone https://github.com/ponces/treble_experimentations
@@ -32,7 +31,6 @@ jobs:
               git clone https://github.com/rahulkhatri137/treble_build_pe -b eleven
 
        - name: Build
-         continue-on-error: true
          run: |
               cd pixel
               bash treble_build_pe/buildbot_treble.sh
