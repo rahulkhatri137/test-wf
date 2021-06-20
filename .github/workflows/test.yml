@@ -17,4 +17,4 @@ jobs:
        
        - name: Download
          run: |
-              sudo apt install expect repo
+              sudo apt install expect repo -y
