@@ -16,7 +16,8 @@ jobs:
               git config --global user.name ${{ secrets.GHUSER }}
               git config --global credential.helper store
               echo "https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
-     
+              sudo apt install expect -y
+
        - name: Download
          run: |
               git clone https://github.com/phhusson/treble_app
@@ -32,7 +33,25 @@ jobs:
          run: |
               cd treble_app
               ls
-              cd ./app/build/outputs/apk
+              expect -c " 
+              spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
+              expect \"yes/no\"
+              send \"yes\r\"
+              expect \"Password\"        
+              send \"${{ secrets.SFPASS }}\r\"
+              expect \"sftp> \"
+              send \"cd ${{ secrets.SFDIR }}\r\"
+              set timeout -1
+              send \"put *.apk\r\"
+              expect \"Uploading\"
+              expect \"100%\"
+              expect \"sftp>\"
+              send \"bye\r\"
+              cd app
+              ls
+              cd build
+              ls
+              cd output
               ls
               expect -c " 
               spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
