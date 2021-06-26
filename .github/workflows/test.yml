@@ -31,26 +31,20 @@ jobs:
      
        - name: Download
          run: |
-              ls
-              git clone https://github.com/ponces/treble_experimentations
-              mkdir pixel; cd pixel
-              ls
-              python3 ~/.repo/repo init -u https://github.com/PixelExperience/manifest -b eleven
-              git clone https://github.com/ponces/treble_patches -b eleven
-              git clone https://github.com/rahulkhatri137/treble_build_pe -b eleven
+              git clone https://github.com/phhusson/treble_app
 
        - name: Build
          continue-on-error: true
          run: |
-              cd pixel
-              bash treble_build_pe/buildbot_treble.sh
+              cd treble_app
+              bash build.sh
               ls
 
        - name: Upload 
          run: |
-              cd pixel
+              cd treble_app
               ls
-              cd builds
+              cd ./app/build/outputs/apk
               ls
               expect -c " 
               spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
@@ -61,7 +55,7 @@ jobs:
               expect \"sftp> \"
               send \"cd ${{ secrets.SFDIR }}\r\"
               set timeout -1
-              send \"put *.xz\r\"
+              send \"put *.apk\r\"
               expect \"Uploading\"
               expect \"100%\"
               expect \"sftp>\"
