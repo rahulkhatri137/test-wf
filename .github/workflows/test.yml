@@ -47,6 +47,7 @@ jobs:
               expect \"100%\"
               expect \"sftp>\"
               send \"bye\r\"
+              interact"
               cd app
               ls
               cd build
