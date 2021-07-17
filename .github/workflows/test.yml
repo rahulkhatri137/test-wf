@@ -17,51 +17,15 @@ jobs:
               git config --global credential.helper store
               echo "https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
        
-       - name: Setup
+       - name: Build
          continue-on-error: true
          run: |
-              mkdir -p ~/.repo
-              PATH="${HOME}/.repo:${PATH}"
-              curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.repo/repo
-              chmod a+rx ~/.repo/repo  
-              sudo apt install expect -y
+              git clone https://github.com/thehamkercat/Telegram_VC_Bot bot
+              cd bot
+              sudo docker build . -t tgvc-bot
               ls
-     
-       - name: Download
-         run: |
-              ls
-              git clone https://github.com/ponces/treble_experimentations
-              mkdir pixel; cd pixel
-              ls
-              python3 ~/.repo/repo init -u https://github.com/PixelExperience/manifest -b eleven
-              git clone https://github.com/ponces/treble_patches -b eleven
-              git clone https://github.com/rahulkhatri137/treble_build_pe -b eleven
 
-       - name: Build
+       - name: Run
          run: |
-              cd pixel
-              bash treble_build_pe/buildbot_treble.sh
-              ls
-              cd builds
-              ls
-       - name: Upload 
-         run: |
-              cd pixel
-              ls
-              cd builds
-              ls
-              expect -c " 
-              spawn sftp ${{ secrets.SFUSER }}@frs.sourceforge.net
-              expect \"yes/no\"
-              send \"yes\r\"
-              expect \"Password\"        
-              send \"${{ secrets.SFPASS }}\r\"
-              expect \"sftp> \"
-              send \"cd ${{ secrets.SFDIR }}\r\"
-              set timeout -1
-              send \"put *.xz\r\"
-              expect \"Uploading\"
-              expect \"100%\"
-              expect \"sftp>\"
-              send \"bye\r\"
-              interact"
+              cd bot
+              sudo docker run tgvc-bot
