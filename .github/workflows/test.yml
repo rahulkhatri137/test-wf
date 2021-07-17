@@ -20,7 +20,7 @@ jobs:
        - name: Build
          continue-on-error: true
          run: |
-              git clone https://github.com/rahulkhatri137/tg-vc bot
+              git clone https://rahulkhatri137:${{ secrets.GH_TOKEN }}@github.com/tg-vc bot
               cd bot
               sudo docker build . -t tgvc-bot
               ls
