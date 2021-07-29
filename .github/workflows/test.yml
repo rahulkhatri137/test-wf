@@ -20,12 +20,10 @@ jobs:
        - name: Build
          continue-on-error: true
          run: |
-              git clone https://rahulkhatri137:${{ secrets.GH_TOKEN }}@github.com/rahulkhatri137/tg-vc bot
-              cd bot
-              sudo docker build . -t tgvc-bot
+              git clone https://rahulkhatri137:${{ secrets.GH_TOKEN }}@github.com/rahulkhatri137/android-tool
+              sudo install simg2img
               ls
 
        - name: Run
          run: |
-              cd bot
-              sudo docker run tgvc-bot
+              ls
