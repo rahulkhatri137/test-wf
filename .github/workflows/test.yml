@@ -12,17 +12,15 @@ jobs:
 
        - name: Set Git Configs & Secrets
          run: |
-              git config --global user.email ${{ secrets.GHMAIL }}
-              git config --global user.name ${{ secrets.GHUSER }}
-              git config --global credential.helper store
-              echo "https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
+              aria2c https://mirror.rahul137.workers.dev/ZUI-HELIOS-25-10-GSI-AB/ErfanGSIs/output/ZUI-AB-10-20201025-HELIOSBAKERTOOLS.img
        
        - name: Build
          continue-on-error: true
          run: |
-              git clone https://rahulkhatri137:${{ secrets.GH_TOKEN }}@github.com/rahulkhatri137/android-tool
-              sudo install simg2img
-              ls
+              mkdir -p output
+              mv ZUI-AB-10-20201025-HELIOSBAKERTOOLS.img system.img
+              sudo mount -t ext4 -o loop system.img output/
+              ls ; cd output ; ls
 
        - name: Run
          run: |
