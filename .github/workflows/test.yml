@@ -36,7 +36,7 @@ jobs:
               mkdir pixel; cd pixel
               ls
               python3 ~/.repo/repo init -u https://github.com/PixelExperience/manifest -b eleven
-              git clone https://github.com/ponces/treble_patches -b eleven
+              git clone https://github.com/AndyCGYan/treble_patches -b eleven
               git clone https://github.com/rahulkhatri137/treble_build_pe -b eleven
 
        - name: Build
