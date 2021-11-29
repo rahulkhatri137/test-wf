@@ -18,9 +18,5 @@ jobs:
        
        - name: Download
          run: |
-          sudo swapoff -av
-          sudo rm -f /swapfile
-          sudo dd if=/dev/zero of=swap bs=4k count=1048576
-          sudo mkswap swap
-          sudo swapon swap
-          df -h
+          git clone --recurse-submodules https://github.com/rahulkhatri137/ErfanGSIs
+          cd ErfanGSIs/build; ls ; ls vendor
