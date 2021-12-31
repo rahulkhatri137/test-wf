@@ -17,5 +17,5 @@ jobs:
        
        - name: Download
          run: |
-          git clone --recurse-submodules https://github.com/rahulkhatri137/ErfanGSIs
-          cd ErfanGSIs/build; ls ; ls vendor
+          git clone https://github.com/rahulkhatri137/apex_vndk a
+          cd a/11 ; mkdir t ; 7z x vndk.7z -ot ; ls t
