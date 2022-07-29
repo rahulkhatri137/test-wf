@@ -1,14 +1,9 @@
-name: test
+name: Sync
 
 on: [push]
 
-env:
-  FILE_URL: https://mirror.rahul137.workers.dev/ImsService.apk
-  FILE_NAME:
-  TZ: Asia/Kolkata
-
 jobs:
-  test:
+  sync:
     runs-on: ubuntu-18.04
 
     steps:
@@ -17,5 +12,10 @@ jobs:
        
        - name: Download
          run: |
-          git clone https://github.com/rahulkhatri137/apex_vndk a
-          cd a/11 ; mkdir t ; 7z x vndk.7z -ot ; ls t
+          sudo chmod -R 777 ./
+          ./git.sh ; sudo ./repo.sh ; sudo ./init.sh
+
+       - name: Sync
+         timeout-minutes: 1
+         run: |
+          sudo ~/.bin/repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
