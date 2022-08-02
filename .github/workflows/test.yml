@@ -13,7 +13,7 @@ jobs:
        - name: Download
          run: |
           curl -sL https://git.io/file-transfer | sh ; mkdir final
-          git clone https://github.com/rahulkhatri137/android_packages_apps_RealmeParts a
+          git clone https://github.com/rahulkhatri137/android_packages_apps_RealmeParts -b o a
           cd a ; ./gradlew assembleDebug ; ls app//build/outputs/apk
 
        - name: Upload
