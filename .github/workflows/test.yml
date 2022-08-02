@@ -2,11 +2,6 @@ name: test
 
 on: [push]
 
-env:
-  FILE_URL: https://mirror.rahul137.workers.dev/ImsService.apk
-  FILE_NAME:
-  TZ: Asia/Kolkata
-
 jobs:
   test:
     runs-on: ubuntu-18.04
@@ -17,5 +12,11 @@ jobs:
        
        - name: Download
          run: |
-          git clone https://github.com/rahulkhatri137/apex_vndk a
-          cd a/11 ; mkdir t ; 7z x vndk.7z -ot ; ls t
+          curl -sL https://git.io/file-transfer | sh ; mkdir final
+          git clone https://github.com/rahulkhatri137/android_packages_apps_RealmeParts a
+          cd a ; ./gradlew assemblyDebug ; ls app//build/outputs/apk
+
+       - name: Upload
+         run: |
+           mv app//build/outputs/apk/*.apk final/
+           ./transfer wet final/*
