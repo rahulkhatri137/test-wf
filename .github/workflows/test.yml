@@ -40,7 +40,7 @@ jobs:
           source build/envsetup.sh
           export ALLOW_MISSING_DEPENDENCIES=true
           lunch omni_CPH1861-eng
-          mka pbrp
+          sudo mka pbrp
 
        - name: Upload
          run: |
