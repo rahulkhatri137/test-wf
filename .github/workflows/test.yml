@@ -34,14 +34,9 @@ jobs:
          run: |
           sudo ~/.bin/repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
 
-       - name: Build
+       - name: Setup wet
          run: |
-          export MAINTAINER=rahulkhatri137 ; export VENDOR=oppo ; export CODENAME=CPH1861 ; export VERSION=3.1.0 ; export TEST_BUILD=true
-          source build/envsetup.sh
-          export ALLOW_MISSING_DEPENDENCIES=true
-          lunch omni_CPH1861-eng
-          sudo mka pbrp
+          curl -sL https://git.io/file-transfer | sh
 
-       - name: Upload
-         run: |
-          cd out/target/product ; curl -sL https://git.io/file-transfer | sh ; sudo chmod a+x transfer ; ./transfer wet *
+       - name: Start SSH
+         uses: mxschmitt/action-tmate@master
