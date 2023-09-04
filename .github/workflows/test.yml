@@ -8,7 +8,7 @@ jobs:
 
     steps:
        - name: Checkout
-         uses: actions/checkout@master
+         uses: actions/checkout@v3
        
        - name: Download
          run: |
@@ -18,4 +18,5 @@ jobs:
        - name: Sync
          timeout-minutes: 1
          run: |
-          sudo ~/.bin/repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
+          sudo chmod a+rx ~/.bin/repo
+          ~/.bin/repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
