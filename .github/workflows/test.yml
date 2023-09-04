@@ -18,5 +18,4 @@ jobs:
        - name: Sync
          timeout-minutes: 1
          run: |
-          sudo chmod a+rx ~/.bin/repo
-          ~/.bin/repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
+          sudo ./sync.sh
